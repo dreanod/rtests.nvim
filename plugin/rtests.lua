@@ -57,7 +57,7 @@ local test_r_file = function(bufnr)
   outfn = vim.fs.dirname(outfn) .. '/.test-' .. vim.fs.basename(outfn)
   vim.fn.writefile(content, outfn)
   vim.fn.jobstart(
-    "R --slave -e 'testpackage::test_logger(\"" .. outfn .. "\")'",
+    "R --slave -e 'rtestNvim::test_logger(\"" .. outfn .. "\")'",
     { on_exit = function() 
         local s = io.open(outfn .. ".json"):read("*a")
         local results = vim.fn.json_decode(s)
